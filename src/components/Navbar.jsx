@@ -13,25 +13,26 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#dfd7ca] bg-[#fbf8f2]/95 backdrop-blur-md">
-      <nav className="mx-auto flex h-[128px] max-w-[1520px] items-center justify-between px-6 lg:px-10">
+      <nav className="mx-auto flex h-[72px] max-w-[1520px] items-center justify-between px-4 sm:h-[96px] sm:px-6 lg:h-[128px] lg:px-10">
         {/* Brand */}
-        <a href="/" className="flex items-center gap-4 sm:gap-6">
+        <a href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-4 lg:gap-6">
           <img
             src="/logo.svg"
             alt="Jerry L. Stafford Logo"
-            className="h-[105px] w-[105px] sm:h-[114px] sm:w-[114px] object-contain flex-shrink-0"
+            className="h-[52px] w-[52px] flex-shrink-0 object-contain sm:h-[78px] sm:w-[78px] lg:h-[114px] lg:w-[114px]"
           />
 
-          <div className="flex flex-col justify-center">
-            <span className="font-serif text-[28px] sm:text-[34px] font-bold leading-none tracking-[0.03em] text-[#341d13]">
+          <div className="flex min-w-0 flex-col justify-center">
+            <span className="truncate font-serif text-[16px] font-bold leading-none tracking-[0.02em] text-[#341d13] sm:text-[26px] sm:tracking-[0.03em] lg:text-[34px]">
               JERRY L. STAFFORD
             </span>
-            <span className="mt-2.5 sm:mt-3 flex items-center gap-2 font-serif text-[12px] sm:text-[14px] font-normal leading-snug tracking-[0.03em] text-[#4d433e]">
+            <span className="mt-1.5 hidden items-center gap-2 font-serif text-[12px] font-normal leading-snug tracking-[0.03em] text-[#4d433e] sm:flex sm:mt-2 lg:mt-3 lg:text-[14px]">
               <span>Author</span>
               <span className="text-[10px] text-[#8e6128]">&bull;</span>
               <span>Thinker</span>
               <span className="text-[10px] text-[#8e6128]">&bull;</span>
-              <span>Explorer of Life&apos;s Enduring Questions</span>
+              <span className="hidden lg:inline">Explorer of Life&apos;s Enduring Questions</span>
+              <span className="lg:hidden">Explorer</span>
             </span>
           </div>
         </a>
@@ -64,18 +65,31 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+          className="flex h-10 w-10 flex-shrink-0 flex-col items-center justify-center gap-1.5 lg:hidden"
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
-          <span className="h-[1.5px] w-6 bg-[#341d13]" />
-          <span className="h-[1.5px] w-6 bg-[#341d13]" />
-          <span className="h-[1.5px] w-6 bg-[#341d13]" />
+          <span
+            className={`h-[1.5px] w-6 bg-[#341d13] transition-transform duration-200 ${
+              menuOpen ? 'translate-y-[7px] rotate-45' : ''
+            }`}
+          />
+          <span
+            className={`h-[1.5px] w-6 bg-[#341d13] transition-opacity duration-200 ${
+              menuOpen ? 'opacity-0' : 'opacity-100'
+            }`}
+          />
+          <span
+            className={`h-[1.5px] w-6 bg-[#341d13] transition-transform duration-200 ${
+              menuOpen ? '-translate-y-[7px] -rotate-45' : ''
+            }`}
+          />
         </button>
       </nav>
 
       {/* Mobile Drawer */}
       {menuOpen && (
-        <div className="border-t border-[#dfd7ca] bg-[#fbf8f2] px-6 py-6 lg:hidden">
+        <div className="max-h-[calc(100vh-72px)] overflow-y-auto border-t border-[#dfd7ca] bg-[#fbf8f2] px-6 py-6 lg:hidden">
           <div className="flex flex-col gap-5">
             {navItems.map((item) => (
               <a

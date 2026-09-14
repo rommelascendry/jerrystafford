@@ -143,7 +143,7 @@ export default function Home() {
       {/* ========================================
           HERO (SECTION 1)
       ======================================== */}
-      <section className="relative min-h-[650px] overflow-hidden bg-[#e8d9bd]">
+      <section className="relative min-h-0 overflow-hidden bg-[#e8d9bd] sm:min-h-[650px]">
         <div className="absolute inset-0 z-0">
           <img
             src="/images/herosection1.png"
@@ -156,14 +156,14 @@ export default function Home() {
 
         <SandStormEffect />
 
-        <div className="relative z-10 mx-auto grid min-h-[650px] max-w-[1400px] grid-cols-1 items-center px-6 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:px-16 lg:py-10">
+        <div className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 items-center px-5 py-12 sm:min-h-[650px] sm:px-6 sm:py-16 lg:grid-cols-[0.9fr_1.1fr] lg:px-16 lg:py-10">
           <div className="max-w-[620px]">
             <h1 
-              className="animate-hero-fade font-hero-heading text-[42px] font-semibold leading-[1.08] tracking-[-0.015em] text-[#341d13] drop-shadow-[0_1px_3px_rgba(255,255,255,0.7)] sm:text-[50px] lg:text-[56px]"
+              className="animate-hero-fade font-hero-heading text-[32px] font-semibold leading-[1.1] tracking-[-0.015em] text-[#341d13] drop-shadow-[0_1px_3px_rgba(255,255,255,0.7)] sm:text-[50px] lg:text-[56px]"
               style={{ animationDelay: '200ms' }}
             >
-              <span className="block whitespace-nowrap">Searching for Meaning.</span>
-              <span className="block whitespace-nowrap">Finding Understanding.</span>
+              <span className="block sm:whitespace-nowrap">Searching for Meaning.</span>
+              <span className="block sm:whitespace-nowrap">Finding Understanding.</span>
             </h1>
 
             <p 
@@ -229,13 +229,13 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative flex h-[430px] items-end justify-center lg:h-[570px]">
-            <div className="absolute right-[10%] top-[15%] h-[330px] w-[330px] rounded-full bg-[#f4d89e]/30 blur-3xl" />
+          <div className="relative mt-10 flex h-[280px] items-end justify-center sm:h-[400px] lg:mt-0 lg:h-[570px]">
+            <div className="absolute right-[10%] top-[15%] h-[180px] w-[180px] rounded-full bg-[#f4d89e]/30 blur-3xl sm:h-[260px] sm:w-[260px] lg:h-[330px] lg:w-[330px]" />
 
-            <div className="relative flex h-[400px] w-[580px] items-center justify-center lg:h-[500px] lg:w-[620px]">
-              <div className="absolute bottom-8 h-[80px] w-[85%] rounded-[50%] bg-black/25 blur-2xl" />
+            <div className="relative flex h-[260px] w-full max-w-[340px] items-center justify-center sm:h-[360px] sm:max-w-[460px] lg:h-[500px] lg:max-w-[620px]">
+              <div className="absolute bottom-4 h-[45px] w-[85%] rounded-[50%] bg-black/25 blur-2xl sm:bottom-8 sm:h-[80px]" />
 
-              <div className="relative flex h-[380px] w-[250px] rotate-[-2deg] items-center justify-center transition-transform duration-300 hover:rotate-0 hover:scale-105 lg:h-[430px] lg:w-[285px]">
+              <div className="relative flex h-[235px] w-[155px] rotate-[-2deg] items-center justify-center transition-transform duration-300 hover:rotate-0 hover:scale-105 sm:h-[330px] sm:w-[220px] lg:h-[430px] lg:w-[285px]">
                 <img
                   src="/images/hero1.png"
                   alt="The Greatest? by Jerry L. Stafford"
@@ -243,7 +243,7 @@ export default function Home() {
                 />
               </div>
 
-              <div className="relative z-10 -ml-8 mt-[-15px] flex h-[400px] w-[255px] rotate-[1deg] items-center justify-center transition-transform duration-300 hover:rotate-0 hover:scale-105 lg:h-[455px] lg:w-[295px]">
+              <div className="relative z-10 -ml-6 mt-[-10px] flex h-[250px] w-[160px] rotate-[1deg] items-center justify-center transition-transform duration-300 hover:rotate-0 hover:scale-105 sm:-ml-8 sm:mt-[-15px] sm:h-[350px] sm:w-[225px] lg:h-[455px] lg:w-[295px]">
                 <img
                   src="/images/hero2.png"
                   alt="Searching for Certainty by Jerry L. Stafford"
@@ -632,8 +632,8 @@ export default function Home() {
             fifthVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
           }`}
         >
-          <div className="flex items-center justify-center px-8 py-10 lg:py-16">
-            <span className="font-hero-heading text-[120px] font-semibold leading-none tracking-tight text-[#e5d4be] sm:text-[150px] lg:text-[170px] xl:text-[200px] select-none">
+          <div className="flex items-center justify-center px-4 py-8 sm:px-8 sm:py-10 lg:py-16">
+            <span className="font-hero-heading text-[76px] font-semibold leading-none tracking-tight text-[#e5d4be] sm:text-[150px] lg:text-[170px] xl:text-[200px] select-none">
               2026
             </span>
           </div>
@@ -811,8 +811,8 @@ export default function Home() {
             <div className="mt-12 divide-y divide-[#e2d7c5] border-t border-[#e2d7c5]">
               {/* Item 1: THE GREATEST? */}
               <div className="flex flex-col items-start justify-between gap-5 py-6 sm:flex-row sm:items-center sm:gap-6">
-                <div className="flex items-center gap-5">
-                  <div className="flex h-[115px] w-[155px] flex-shrink-0 items-center justify-center overflow-hidden rounded-[3px] border border-[#cfbeaa] bg-[#efe4d3] p-1.5 shadow-sm sm:h-[130px] sm:w-[175px]">
+                <div className="flex items-center gap-3 sm:gap-5">
+                  <div className="flex h-[90px] w-[120px] flex-shrink-0 items-center justify-center overflow-hidden rounded-[3px] border border-[#cfbeaa] bg-[#efe4d3] p-1.5 shadow-sm sm:h-[130px] sm:w-[175px]">
                     <img
                       src="/images/greatest.jpg"
                       alt="The Greatest?"
@@ -846,8 +846,8 @@ export default function Home() {
 
               {/* Item 2: SEARCHING FOR CERTAINTY */}
               <div className="flex flex-col items-start justify-between gap-5 py-6 sm:flex-row sm:items-center sm:gap-6">
-                <div className="flex items-center gap-5">
-                  <div className="flex h-[115px] w-[155px] flex-shrink-0 items-center justify-center overflow-hidden rounded-[3px] border border-[#cfbeaa] bg-[#efe4d3] p-1.5 shadow-sm sm:h-[130px] sm:w-[175px]">
+                <div className="flex items-center gap-3 sm:gap-5">
+                  <div className="flex h-[90px] w-[120px] flex-shrink-0 items-center justify-center overflow-hidden rounded-[3px] border border-[#cfbeaa] bg-[#efe4d3] p-1.5 shadow-sm sm:h-[130px] sm:w-[175px]">
                     <img
                       src="/images/searching.png"
                       alt="Searching for Certainty"
