@@ -338,7 +338,7 @@ export default function Books() {
               <div className="relative group max-w-[320px] sm:max-w-[360px] lg:max-w-none">
                 <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 h-9 w-[90%] rounded-[50%] bg-black/30 blur-2xl" />
                 <img
-                  src="/images/hero2.png"
+                  src="/images/publictry.png"
                   alt="Searching for Certainty by Jerry L. Stafford"
                   className="relative z-10 w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] transition-transform duration-300 hover:scale-[1.02]"
                 />
