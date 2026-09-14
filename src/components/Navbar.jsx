@@ -1,21 +1,31 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+  const currentPath = location?.pathname || (typeof window !== 'undefined' ? window.location.pathname : '/')
 
   const navItems = [
-    { label: 'HOME', href: '/', active: true },
-    { label: 'THE BOOKS', href: '/books', active: false },
-    { label: 'ABOUT', href: '/about', active: false },
-    { label: 'WRITTEN WORKS', href: '/written-works', active: false },
-    { label: 'CONTACT', href: '/contact', active: false },
+    { label: 'HOME', href: '/' },
+    { label: 'THE BOOKS', href: '/books' },
+    { label: 'ABOUT', href: '/about' },
+    { label: 'WRITTEN WORKS', href: '/written-works' },
+    { label: 'CONTACT', href: '/contact' },
   ]
+
+  const isItemActive = (href) => {
+    if (href === '/') {
+      return currentPath === '/'
+    }
+    return currentPath.startsWith(href)
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#dfd7ca] bg-[#fbf8f2]/95 backdrop-blur-md">
       <nav className="mx-auto flex h-[72px] max-w-[1520px] items-center justify-between px-4 sm:h-[96px] sm:px-6 lg:h-[128px] lg:px-10">
         {/* Brand */}
-        <a href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-4 lg:gap-6">
+        <Link to="/" className="flex min-w-0 items-center gap-2.5 sm:gap-4 lg:gap-6">
           <img
             src="/logo.svg"
             alt="Jerry L. Stafford Logo"
@@ -35,30 +45,33 @@ export default function Navbar() {
               <span className="lg:hidden">Explorer</span>
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden items-center gap-8 lg:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className={`relative py-1 text-[11px] font-semibold tracking-[0.08em] transition-colors duration-200 ${
-                item.active
-                  ? 'text-[#384241] after:absolute after:bottom-[-2px] after:left-0 after:h-[1.5px] after:w-full after:bg-[#8e6128]'
-                  : 'text-[#4f5756] hover:text-[#9f6d2f]'
-              }`}
-            >
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const active = isItemActive(item.href)
+            return (
+              <Link
+                key={item.label}
+                to={item.href}
+                className={`relative py-1 text-[11px] font-semibold tracking-[0.08em] transition-colors duration-200 ${
+                  active
+                    ? 'text-[#384241] after:absolute after:bottom-[-2px] after:left-0 after:h-[1.5px] after:w-full after:bg-[#8e6128]'
+                    : 'text-[#4f5756] hover:text-[#9f6d2f]'
+                }`}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
 
-          <a
-            href="/books"
+          <Link
+            to="/books"
             className="ml-2 rounded-[3px] bg-[#9e6727] px-5 py-2.5 text-[10.5px] font-semibold tracking-[0.1em] text-white shadow-sm transition-all duration-200 hover:bg-[#83531b]"
           >
             EXPLORE THE BOOKS
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -91,26 +104,29 @@ export default function Navbar() {
       {menuOpen && (
         <div className="max-h-[calc(100vh-72px)] overflow-y-auto border-t border-[#dfd7ca] bg-[#fbf8f2] px-6 py-6 lg:hidden">
           <div className="flex flex-col gap-5">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                className={`text-xs font-semibold tracking-[0.1em] ${
-                  item.active ? 'text-[#8e6128]' : 'text-[#4f5756]'
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const active = isItemActive(item.href)
+              return (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`text-xs font-semibold tracking-[0.1em] ${
+                    active ? 'text-[#8e6128]' : 'text-[#4f5756]'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
 
-            <a
-              href="/books"
+            <Link
+              to="/books"
               onClick={() => setMenuOpen(false)}
               className="mt-2 w-fit rounded-[3px] bg-[#9e6727] px-5 py-2.5 text-[10.5px] font-semibold tracking-[0.1em] text-white"
             >
               EXPLORE THE BOOKS
-            </a>
+            </Link>
           </div>
         </div>
       )}
