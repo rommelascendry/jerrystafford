@@ -10,19 +10,25 @@ export default function Footer() {
   return (
     <footer className="border-t border-[#8c5a2b] bg-[#A06A37] text-[#fff8ee]">
       <div className="mx-auto max-w-[1400px] px-6 py-14 text-center sm:py-16 lg:px-16">
-        
-        {/* Brand Name */}
-        <h3 className="font-serif text-[26px] font-bold tracking-[0.05em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)] sm:text-[30px]">
-          JERRY L. STAFFORD
-        </h3>
+        <div className="flex items-center justify-center gap-4 sm:gap-5">
+          <img
+            src="/logo.svg"
+            alt="Jerry L. Stafford Logo"
+            className="h-22 w-22 object-contain sm:h-28 sm:w-28"
+          />
+
+          <h3 className="font-serif text-[26px] font-bold tracking-[0.05em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)] sm:text-[30px]">
+            JERRY L. STAFFORD
+          </h3>
+        </div>
 
         {/* Subtitle / Purpose Statement */}
-        <p className="mx-auto mt-3 max-w-[460px] text-[14.5px] font-medium leading-relaxed text-[#faecd8]">
+        <p className="mx-auto mt-3 max-w-[460px] text-center text-[14.5px] font-medium leading-relaxed text-[#faecd8]">
           Thoughtful writing for readers exploring life&rsquo;s enduring questions.
         </p>
 
         {/* Nav Links */}
-        <nav className="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[12.5px] font-semibold tracking-[0.06em]">
+        <nav className="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-[12.5px] font-semibold tracking-[0.06em]">
           {navLinks.map((item, index) => (
             <span key={item.label} className="inline-flex items-center gap-3">
               <a
