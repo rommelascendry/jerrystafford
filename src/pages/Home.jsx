@@ -138,6 +138,55 @@ export default function Home() {
           opacity: 0;
           animation: heroFadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
+        /* ---- Floating book covers (Sections 3 & 4) ---- */
+        @keyframes bookFloat {
+          0%, 100% {
+            transform: translate3d(0, 0, 0) rotate(-0.35deg);
+          }
+          50% {
+            transform: translate3d(0, -14px, 0) rotate(0.35deg);
+          }
+        }
+        .animate-book-float {
+          animation: bookFloat 6s ease-in-out infinite;
+          will-change: transform;
+        }
+        /* Second cover drifts on a slightly different cycle so the two
+           never bob in lockstep */
+        .animate-book-float-alt {
+          animation: bookFloat 7.4s ease-in-out infinite;
+          animation-delay: -2.4s;
+          will-change: transform;
+        }
+
+        /* Ground shadow tightens as the cover rises */
+        @keyframes bookShadow {
+          0%, 100% {
+            transform: translateX(-50%) scaleX(1);
+            opacity: 1;
+          }
+          50% {
+            transform: translateX(-50%) scaleX(0.84);
+            opacity: 0.55;
+          }
+        }
+        .animate-book-shadow {
+          animation: bookShadow 6s ease-in-out infinite;
+        }
+        .animate-book-shadow-alt {
+          animation: bookShadow 7.4s ease-in-out infinite;
+          animation-delay: -2.4s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .animate-book-float,
+          .animate-book-float-alt,
+          .animate-book-shadow,
+          .animate-book-shadow-alt {
+            animation: none;
+          }
+        }
       `}</style>
 
       {/* ========================================
@@ -237,7 +286,7 @@ export default function Home() {
 
               <div className="relative flex h-[235px] w-[155px] rotate-[-2deg] items-center justify-center transition-transform duration-300 hover:rotate-0 hover:scale-105 sm:h-[330px] sm:w-[220px] lg:h-[430px] lg:w-[285px]">
                 <img
-                  src="/images/hero1.png"
+                  src="/images/hero3.png"
                   alt="The Greatest? by Jerry L. Stafford"
                   className="h-full w-full object-contain drop-shadow-[0_20px_25px_rgba(0,0,0,0.35)]"
                 />
@@ -340,13 +389,15 @@ export default function Home() {
             }`}
           >
             <div className="flex justify-center lg:justify-start">
-              <div className="relative group max-w-[320px] sm:max-w-[360px] lg:max-w-none">
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 h-8 w-[85%] rounded-[50%] bg-black/25 blur-xl" />
-                <img
-                  src="/images/hero1.png"
-                  alt="The Greatest? by Jerry L. Stafford"
-                  className="relative z-10 w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.3)] transition-transform duration-300 hover:scale-[1.02]"
-                />
+              <div className="group relative max-w-[320px] sm:max-w-[360px] lg:max-w-none">
+                <div className="animate-book-shadow absolute -bottom-4 left-1/2 h-8 w-[85%] rounded-[50%] bg-black/25 blur-xl" />
+                <div className="animate-book-float relative z-10">
+                  <img
+                    src="/images/hero3.png"
+                    alt="The Greatest? by Jerry L. Stafford"
+                    className="w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.3)] transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                </div>
               </div>
             </div>
 
@@ -607,13 +658,15 @@ export default function Home() {
             </div>
 
             <div className="flex justify-center lg:justify-end">
-              <div className="relative group max-w-[320px] sm:max-w-[360px] lg:max-w-none">
-                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 h-9 w-[90%] rounded-[50%] bg-black/30 blur-2xl" />
-                <img
-                  src="/images/hero2.png"
-                  alt="Searching for Certainty by Jerry L. Stafford"
-                  className="relative z-10 w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] transition-transform duration-300 hover:scale-[1.02]"
-                />
+              <div className="group relative max-w-[320px] sm:max-w-[360px] lg:max-w-none">
+                <div className="animate-book-shadow-alt absolute -bottom-5 left-1/2 h-9 w-[90%] rounded-[50%] bg-black/30 blur-2xl" />
+                <div className="animate-book-float-alt relative z-10">
+                  <img
+                    src="/images/hero4.png"
+                    alt="Searching for Certainty by Jerry L. Stafford"
+                    className="w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                </div>
               </div>
             </div>
           </div>
