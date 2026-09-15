@@ -4,12 +4,16 @@ import SandStormEffect from '../components/SandStormEffect'
 export default function Contact() {
   const [sectionVisible, setSectionVisible] = useState(false)
   const [showModal, setShowModal] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     subject: '',
     message: '',
   })
+
+  const WEB3FORMS_ACCESS_KEY = '33e659de-782b-4670-becc-e4bd732b6d64'
 
   const sectionRef = useRef(null)
 
@@ -47,9 +51,44 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setShowModal(true)
+    setIsSubmitting(true)
+    setErrorMessage('')
+
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: `New Inquiry: ${formData.subject}`,
+      Inquiry_Subject: formData.subject,
+      name: formData.fullName,
+      email: formData.email,
+      message: formData.message,
+      from_name: 'Jerry L. Stafford Contact Form',
+    }
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setShowModal(true)
+      } else {
+        setErrorMessage(data.message || 'Something went wrong. Please try again.')
+      }
+    } catch (err) {
+      console.error('Submission failed:', err)
+      setErrorMessage('Network error. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const closeModal = () => {
@@ -263,9 +302,10 @@ export default function Contact() {
               <div className="mt-6 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
                 <button
                   type="submit"
-                  className="font-hero-body fs-btn tap-target w-full flex-shrink-0 rounded-[3px] bg-[#9e6727] px-8 py-3.5 font-bold tracking-[0.14em] text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#83531b] sm:w-auto"
+                  disabled={isSubmitting}
+                  className="font-hero-body fs-btn tap-target w-full flex-shrink-0 rounded-[3px] bg-[#9e6727] px-8 py-3.5 font-bold tracking-[0.14em] text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#83531b] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
                 >
-                  SEND MESSAGE
+                  {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
                 </button>
 
                 <p className="font-hero-body fs-small text-center leading-snug text-[#5c5045] sm:text-left">
@@ -274,6 +314,13 @@ export default function Contact() {
                   Thank you for reaching out.
                 </p>
               </div>
+
+              {/* Inline Error Notice */}
+              {errorMessage && (
+                <div className="mt-4 rounded border border-[#e2a99d] bg-[#fdf2f0] p-3 text-center text-sm font-semibold text-[#a03622]">
+                  {errorMessage}
+                </div>
+              )}
             </form>
           </div>
         </div>
