@@ -421,7 +421,9 @@ export default function Books() {
 
               <div className="mt-5 flex">
                 <a
-                  href="/books"
+                  href="https://www.amazon.com/dp/B0HJSRPXQ5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="font-hero-body fs-btn tap-target w-full rounded-[3px] bg-[#9e6727] px-6 py-3 text-center font-bold tracking-[0.14em] text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#83531b] sm:w-auto"
                 >
                   AVAILABLE ON AMAZON

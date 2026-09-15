@@ -649,7 +649,9 @@ export default function Home() {
 
               <div className="mt-5 flex items-center">
                 <a
-                  href="/books"
+                  href="https://www.amazon.com/dp/B0HJSRPXQ5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="font-hero-body inline-block rounded-[3px] bg-[#9e6727] px-6 py-3 text-[11px] font-bold tracking-[0.14em] text-white shadow-sm transition-all duration-200 hover:bg-[#83531b] hover:-translate-y-0.5"
                 >
                   AVAILABLE ON AMAZON
@@ -922,7 +924,9 @@ export default function Home() {
 
                 <div className="w-full flex-shrink-0 sm:w-auto">
                   <a
-                    href="/books"
+                    href="https://www.amazon.com/dp/B0HJSRPXQ5/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="font-hero-body block text-center rounded-[3px] bg-[#9e6727] px-6 py-2.5 text-[10.5px] font-bold tracking-[0.14em] text-white shadow-sm transition-all duration-200 hover:bg-[#83531b] hover:-translate-y-0.5"
                   >
                     VIEW BOOK
